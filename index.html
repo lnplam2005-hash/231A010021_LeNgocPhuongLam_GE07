@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ứng Dụng Quản Lý Tài Chính Cá Nhân - EG07</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header Thông tin sinh viên & Liên kết bài tập cũ -->
+        <header class="user-header">
+            <h1>QUẢN LÝ TÀI CHÍNH CÁ NHÂN (FINANCE TRACKER)</h1>
+            <div class="student-meta">
+                <p><b>Họ và tên:</b> Lê Ngọc Phương Lâm | <b>MSSV:</b> 231A010021 | <b>Mã đề:</b> EG07</p>
+                <div class="old-assignments">
+                    <span><b>Kết quả bài tập trước:</b> </span>
+                    <a href="#preview-assignments">Bài 40 (2 ảnh)</a> | 
+                    <a href="#preview-assignments">Bài 41 (Ảnh kết quả)</a> | 
+                    <a href="https://lnplam2005-hash.github.io/bai42/" target="_blank">Bài 42 (Link Web Deploy)</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Bài 1: Thẻ tổng quan tài chính -->
+        <section class="finance-summary">
+            <div class="card balance-card">
+                <h3>Số Dư Hiện Tại</h3>
+                <p id="totalBalance">0 đ</p>
+            </div>
+            <div class="card income-card">
+                <h3>Tổng Thu</h3>
+                <p id="totalIncome">0 đ</p>
+            </div>
+            <div class="card expense-card">
+                <h3>Tổng Chi</h3>
+                <p id="totalExpense">0 đ</p>
+            </div>
+        </section>
+
+        <!-- Bài 3: Biểu đồ thanh tiến trình thu chi (Progress Bar) -->
+        <section class="progress-section">
+            <h3>Biểu Đồ Tỷ Lệ Thu / Chi</h3>
+            <div class="progress-bar-container">
+                <div id="incomeProgress" class="progress-fill income-fill" style="width: 50%;">Thu: 0%</div>
+                <div id="expenseProgress" class="progress-fill expense-fill" style="width: 50%;">Chi: 0%</div>
+            </div>
+        </section>
+
+        <!-- Khu vực chức năng chính -->
+        <div class="main-content-grid">
+            <!-- Bài 2: Form thêm giao dịch mới -->
+            <section class="form-section">
+                <h2>Thêm Giao Dịch Mới</h2>
+                <form id="transactionForm">
+                    <div class="form-group">
+                        <label for="type">Loại giao dịch:</label>
+                        <select id="type" required>
+                            <option value="income">Khoản Thu</option>
+                            <option value="expense">Khoản Chi</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount">Số tiền (VNĐ):</label>
+                        <input type="number" id="amount" placeholder="Nhập số tiền..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="category">Danh mục:</label>
+                        <input type="text" id="category" placeholder="Ví dụ: Lương, Ăn uống..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Ngày tháng:</label>
+                        <input type="date" id="date" required>
+                    </div>
+                    <button type="submit" class="btn-submit">Thêm Giao Dịch</button>
+                </form>
+            </section>
+
+            <!-- Bài 1 & 4: Bảng lịch sử giao dịch (XSS Escape) -->
+            <section class="table-section">
+                <h2>Lịch Sử Giao Dịch</h2>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Ngày</th>
+                                <th>Danh mục</th>
+                                <th>Loại</th>
+                                <th>Số tiền</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactionTableBody">
+                            <!-- Dữ liệu render động bằng JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+
+        <!-- Phần hiển thị kết quả bài 40 và 41 -->
+        <section id="preview-assignments" class="preview-section">
+            <h3>Kết Quả Bài Tập 40 và Bài Tập 41 (Nhấp vào ảnh để xem lớn)</h3>
+            <div class="preview-group">
+                <p class="preview-title">Bài 40 (2 ảnh kết quả):</p>
+                <div class="preview-images">
+                    <img src="btb40_1.png" alt="Kết quả Bài 40 - Phần 1" class="zoomable-img">
+                    <img src="bt40_2.png" alt="Kết quả Bài 40 - Phần 2" class="zoomable-img">
+                </div>
+            </div>
+            <div class="preview-group">
+                <p class="preview-title">Bài 41 (Ảnh kết quả):</p>
+                <div class="preview-images">
+                    <img src="bt42.png" alt="Kết quả Bài 41" class="zoomable-img">
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modal xem ảnh lớn -->
+    <div id="imageModal" class="modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="imgFull">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
